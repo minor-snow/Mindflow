@@ -1,4 +1,4 @@
-import type { AgentResult, RetryClassification, TaskId, CompiledPrompt } from "../types/index.js";
+import { TaskId, AgentResult, RetryClassification, CompiledPrompt } from "../types/index.js";
 
 const MAX_RETRIES = 3;
 
@@ -29,7 +29,7 @@ export function continuePrompt(
   }
   return {
     taskId,
-    content: "Continue from where you left off. Previous error was transient.",
+    content: "Continue from where you left off.",
     context: [previousOutput.slice(-500)],
   };
 }
