@@ -1,0 +1,6 @@
+added	.pantheon/check.json
+added	.pantheon/internal/agent_scope.json
+added	.pantheon/internal/change_contract_lite.json
+added	.pantheon/internal/observations.json
+added	.pantheon/scope.md
+added	.pantheon/task.md

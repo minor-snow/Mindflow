@@ -1,0 +1,62 @@
+{
+  "schema_version": "diff_verification_result.v1",
+  "verified_at": "2026-05-21T13:11:15.466Z",
+  "source_scope_id": "scope-lite-585fb6b8e184",
+  "source_contract_id": "da62cc1e-26ee-406c-a613-4380dbf318ae",
+  "verdict": "requires_reverse_issue",
+  "reasons": [
+    "`.pantheon/check.json` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/internal/agent_scope.json` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/internal/change_contract_lite.json` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/internal/observations.json` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/scope.md` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/task.md` matches forbidden pattern `.pantheon/**`."
+  ],
+  "required_actions": [
+    "Revert changes to forbidden files. They are managed by Pantheon."
+  ],
+  "file_statuses": [
+    {
+      "path": ".pantheon/check.json",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
+    {
+      "path": ".pantheon/internal/agent_scope.json",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
+    {
+      "path": ".pantheon/internal/change_contract_lite.json",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
+    {
+      "path": ".pantheon/internal/observations.json",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
+    {
+      "path": ".pantheon/scope.md",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
+    {
+      "path": ".pantheon/task.md",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    }
+  ]
+}
