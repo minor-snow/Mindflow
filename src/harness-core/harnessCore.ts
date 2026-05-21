@@ -1,91 +1,109 @@
-import type {
-  TaskId,
-  TaskDefinition,
-  WorkflowState,
-  CompiledPrompt,
-  AgentResult,
-  EventEntry,
-  StatusReport,
-} from "../types/harness-types.js";
-import { add, load, updateState } from "../task-registry/taskRegistry.js";
-import { append, readAppendOrder } from "../event-log/eventLog.js";
-import { transition, deriveState } from "../state-machine/stateMachine.js";
-import { authorize } from "../policy-gate/policyGate.js";
-import { classify, shouldRetry, continuePrompt } from "../retry-manager/retryManager.js";
+import type { TaskId, TaskDefinition, WorkflowState, StatusReport, EventEntry } from "../types/harness-types.js";
+import type { AgentAdapter } from "../adapters/agentAdapter.js";
+import * as taskRegistry from "../task-registry/taskRegistry.js";
+import * as stateMachine from "../state-machine/stateMachine.js";
+import * as eventLog from "../event-log/eventLog.js";
+import * as metricsCollector from "../observation/metricsCollector.js";
+import * as retryManager from "../retry-manager/retryManager.js";
+import * as promptCompiler from "../prompt-compiler/promptCompilerStub.js";
 
-const MAX_ATTEMPTS = 3;
+export interface ExecuteResult {
+  taskId: TaskId;
+  finalState: WorkflowState;
+  eventCount: number;
+}
+
+export interface ExtendedStatusReport extends StatusReport {
+  lastEvent: EventEntry | null;
+}
 
 export async function executeTask(
-  task: TaskDefinition,
-  agentRun: (prompt: CompiledPrompt) => Promise<AgentResult>,
-): Promise<{ taskId: TaskId; finalState: WorkflowState; events: readonly EventEntry[] }> {
-  add(task);
+  taskDef: Omit<TaskDefinition, "id"> & { id?: TaskId },
+  adapter: AgentAdapter,
+): Promise<ExecuteResult> {
+  const taskId = taskRegistry.add(taskDef);
 
-  let state: WorkflowState = "NEW";
-  state = transition(task.id, "task_registered", state);
-  updateState(task.id, state);
+  let state = stateMachine.transition(taskId, "task_registered", "NEW");
+  taskRegistry.updateState(taskId, state);
 
-  state = transition(task.id, "source_locked_agent_started", state);
-  updateState(task.id, state);
+  state = stateMachine.transition(taskId, "source_locked_agent_started", "SOURCE_LOCK");
+  taskRegistry.updateState(taskId, state);
 
-  let prompt: CompiledPrompt = {
-    taskId: task.id,
-    content: task.description,
-    context: [],
-  };
-
-  let attemptCount = 0;
-
-  while (true) {
-    let result: AgentResult;
-    try {
-      result = await agentRun(prompt);
-    } catch (err) {
-      result = {
-        success: false,
-        output: "",
-        error: err instanceof Error ? err.message : String(err),
-        retryable: true,
-      };
-    }
-
-    attemptCount++;
+  while (state === "RUNNING_FAKE_AGENT") {
+    const record = taskRegistry.load(taskId)!;
+    const prompt = promptCompiler.compile(taskId, record.definition.description);
+    const result = await adapter.run(prompt);
 
     if (result.success) {
-      state = transition(task.id, "agent_returned_success", state);
-      updateState(task.id, state);
+      state = stateMachine.transition(taskId, "agent_returned_success", "RUNNING_FAKE_AGENT");
+      taskRegistry.updateState(taskId, state);
       break;
     }
 
-    const classification = classify(result);
+    const classification = retryManager.classify(result);
 
     if (classification === "transient") {
-      state = transition(task.id, "agent_returned_retryable", state);
-      updateState(task.id, state);
+      const retryCount = taskRegistry.incrementRetry(taskId);
+      state = stateMachine.transition(taskId, "agent_returned_retryable", "RUNNING_FAKE_AGENT");
+      taskRegistry.updateState(taskId, state);
 
-      if (shouldRetry(classification, attemptCount)) {
-        state = transition(task.id, "retry_approved", state);
-        updateState(task.id, state);
-        prompt = continuePrompt(task.id, classification, result.output) ?? prompt;
+      if (retryCount < retryManager.MAX_RETRIES) {
+        state = stateMachine.transition(taskId, "retry_approved", "WAITING_RETRY");
+        taskRegistry.updateState(taskId, state);
       } else {
-        state = transition(task.id, "retry_limit_exceeded", state);
-        updateState(task.id, state);
+        state = stateMachine.transition(taskId, "retry_limit_exceeded", "WAITING_RETRY");
+        taskRegistry.updateState(taskId, state);
         break;
       }
     } else {
-      state = transition(task.id, "agent_returned_needs_human", state);
-      updateState(task.id, state);
+      // hard or needs_human — both require human review
+      state = stateMachine.transition(taskId, "agent_returned_needs_human", "RUNNING_FAKE_AGENT");
+      taskRegistry.updateState(taskId, state);
       break;
     }
   }
 
-  const finalState = deriveState(task.id);
-  return { taskId: task.id, finalState, events: readAppendOrder(task.id) };
+  metricsCollector.writeMetrics(taskId);
+
+  return {
+    taskId,
+    finalState: state,
+    eventCount: eventLog.count(taskId),
+  };
 }
 
-export function getStatus(taskId: TaskId): StatusReport {
-  const events = readAppendOrder(taskId);
-  const state = deriveState(taskId);
-  const lastEvent = events.length > 0 ? events[events.length - 1].event : undefined;
-  return { taskId, state, eventCount: events.length, lastEvent };
+export function approveTask(taskId: TaskId): void {
+  const record = taskRegistry.load(taskId);
+  if (!record) throw new Error(`Task not found: ${taskId}`);
+  if (record.state !== "NEEDS_HUMAN") {
+    throw new Error(`approveTask requires state NEEDS_HUMAN, got: ${record.state}`);
+  }
+  const nextState = stateMachine.transition(taskId, "human_approved_continue", "NEEDS_HUMAN");
+  taskRegistry.updateState(taskId, nextState);
+}
+
+export function retryTask(taskId: TaskId): void {
+  const record = taskRegistry.load(taskId);
+  if (!record) throw new Error(`Task not found: ${taskId}`);
+  if (record.state !== "WAITING_RETRY") {
+    throw new Error(`retryTask requires state WAITING_RETRY, got: ${record.state}`);
+  }
+  const nextState = stateMachine.transition(taskId, "retry_approved", "WAITING_RETRY");
+  taskRegistry.updateState(taskId, nextState);
+}
+
+export function getStatus(taskId: TaskId): ExtendedStatusReport {
+  const record = taskRegistry.load(taskId);
+  if (!record) throw new Error(`Task not found: ${taskId}`);
+  const events = eventLog.readAppendOrder(taskId);
+  const lastEvent = events.length > 0 ? events[events.length - 1] : null;
+  return {
+    taskId: record.taskId,
+    state: record.state,
+    retryCount: record.retryCount,
+    eventCount: events.length,
+    createdAt: record.createdAt,
+    updatedAt: record.updatedAt,
+    lastEvent,
+  };
 }

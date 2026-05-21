@@ -1,7 +1,7 @@
-import type { TaskId, WorkflowState, WorkflowEvent } from "../types/harness-types.js";
+import type { WorkflowState, WorkflowEvent, TaskId } from "../types/harness-types.js";
 import * as eventLog from "../event-log/eventLog.js";
 
-const TRANSITIONS: ReadonlyMap<WorkflowState, ReadonlyMap<WorkflowEvent, WorkflowState>> = new Map([
+const TRANSITIONS = new Map<WorkflowState, Map<WorkflowEvent, WorkflowState>>([
   ["NEW", new Map<WorkflowEvent, WorkflowState>([
     ["task_registered", "SOURCE_LOCK"],
   ])],
@@ -28,7 +28,6 @@ const TRANSITIONS: ReadonlyMap<WorkflowState, ReadonlyMap<WorkflowEvent, Workflo
   ["DONE", new Map<WorkflowEvent, WorkflowState>([
     ["outputs_verified", "READY_FOR_NEXT_SLICE"],
   ])],
-  ["READY_FOR_NEXT_SLICE", new Map()],
 ]);
 
 export function transition(
@@ -36,42 +35,26 @@ export function transition(
   event: WorkflowEvent,
   currentState: WorkflowState,
 ): WorkflowState {
-  const stateTransitions = TRANSITIONS.get(currentState);
-  const nextState = stateTransitions?.get(event);
-
+  const nextState = TRANSITIONS.get(currentState)?.get(event);
   if (nextState === undefined) {
-    throw new Error(
-      `Invalid transition: state="${currentState}" event="${event}"`,
-    );
+    throw new Error(`Invalid transition: ${currentState} + ${event}`);
   }
-
-  eventLog.append({
-    taskId,
-    timestamp: new Date().toISOString(),
-    event,
-    data: { from: currentState, to: nextState },
-  });
-
+  eventLog.append(taskId, event, "state_machine");
   return nextState;
 }
 
 export function deriveState(taskId: TaskId): WorkflowState {
-  const entries = eventLog.readAppendOrder(taskId);
-
-  if (entries.length === 0) {
-    return "NEW";
-  }
-
+  const events = eventLog.readAppendOrder(taskId);
   let state: WorkflowState = "NEW";
-
-  for (const entry of entries) {
-    const stateTransitions = TRANSITIONS.get(state);
-    const nextState = stateTransitions?.get(entry.event as WorkflowEvent);
-
+  for (const entry of events) {
+    const nextState: WorkflowState | undefined = TRANSITIONS.get(state)?.get(entry.event);
     if (nextState !== undefined) {
       state = nextState;
     }
   }
-
   return state;
+}
+
+export function isValidTransition(from: WorkflowState, event: WorkflowEvent): boolean {
+  return TRANSITIONS.get(from)?.has(event) ?? false;
 }

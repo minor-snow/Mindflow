@@ -1,27 +1,50 @@
-import { ProposedAction, PolicyDecision } from "../types/harness-types.js";
+import type { PolicyRule, ProposedAction, PolicyDecision } from "../types/harness-types.js";
 
-const DANGEROUS_ACTIONS = new Set([
-  "delete_task",
-  "force_override_state",
-  "skip_policy_gate",
-]);
+export interface AuthResult {
+  allowed: boolean;
+  reason: string;
+  ruleId: string;
+  requiresHuman: boolean;
+}
 
-const FORBIDDEN_MUTATIONS = new Set([
-  "modify_event_log",
-  "rewrite_event",
-  "delete_event",
-]);
+const DEFAULT_RULES: PolicyRule[] = [
+  { id: "PG-001", action_pattern: "delete_task", decision: "requires_human", severity: "hard", reason: "Task deletion requires human approval" },
+  { id: "PG-002", action_pattern: "force_override_state", decision: "block", severity: "hard", reason: "State override forbidden" },
+  { id: "PG-003", action_pattern: "skip_policy_gate", decision: "block", severity: "hard", reason: "Cannot bypass policy gate" },
+  { id: "PG-004", action_pattern: "modify_event_log", decision: "block", severity: "hard", reason: "Event log is append-only (RB-001)" },
+  { id: "PG-005", action_pattern: "rewrite_event", decision: "block", severity: "hard", reason: "Event rewrite forbidden (RB-002)" },
+  { id: "PG-006", action_pattern: "delete_event", decision: "block", severity: "hard", reason: "Event deletion forbidden (RB-001)" },
+  { id: "PG-007", action_pattern: "git_push", decision: "requires_human", severity: "hard", reason: "Release operation requires approval" },
+  { id: "PG-008", action_pattern: "modify_docs_original", decision: "requires_human", severity: "hard", reason: "Original docs require approval (RB-007)" },
+  { id: "PG-009", action_pattern: "run_agent", decision: "allow", severity: "soft", reason: "Agent execution permitted" },
+  { id: "PG-010", action_pattern: "*", decision: "allow", severity: "soft", reason: "Default allow for unmatched actions" },
+];
 
-export function authorize(action: ProposedAction): PolicyDecision {
-  if (DANGEROUS_ACTIONS.has(action.type)) {
-    return { allowed: false, reason: "Dangerous action requires human approval (RB-003)" };
+function matchRule(action: ProposedAction, rules: readonly PolicyRule[]): PolicyRule {
+  for (const rule of rules) {
+    if (rule.action_pattern === "*" || rule.action_pattern === action.action) {
+      return rule;
+    }
   }
-  if (FORBIDDEN_MUTATIONS.has(action.type)) {
-    return { allowed: false, reason: "Event log mutation forbidden (RB-001/RB-002)" };
-  }
-  return { allowed: true, reason: "Action permitted" };
+  throw new Error(`No matching rule for action: ${String(action.action)}`);
+}
+
+export function authorize(action: ProposedAction, rules?: readonly PolicyRule[]): AuthResult {
+  const effectiveRules = rules ?? DEFAULT_RULES;
+  const rule = matchRule(action, effectiveRules);
+  const decision: PolicyDecision = rule.decision;
+  return {
+    allowed: decision === "allow",
+    reason: rule.reason,
+    ruleId: rule.id,
+    requiresHuman: decision === "requires_human",
+  };
 }
 
 export function requiresHumanApproval(action: ProposedAction): boolean {
-  return DANGEROUS_ACTIONS.has(action.type);
+  return authorize(action).requiresHuman;
+}
+
+export function getRules(): readonly PolicyRule[] {
+  return DEFAULT_RULES;
 }

@@ -1,44 +1,52 @@
-// EventLog: append-only, no mutations allowed (RB-001)
-// All events are stored in-memory for now; file persistence in next iteration.
+import { randomUUID } from "node:crypto";
+import { appendFileSync, readFileSync, existsSync, mkdirSync } from "node:fs";
+import { join, dirname } from "node:path";
+import type { TaskId, WorkflowEvent, EventEntry } from "../types/harness-types.js";
 
-import type { TaskId, EventEntry } from "../types/harness-types.js";
+const DATA_DIR = process.env.MFH_DATA_DIR || join(process.cwd(), "tasks");
 
-const store = new Map<TaskId, EventEntry[]>();
+export function getEventsPath(taskId: TaskId): string {
+  return join(DATA_DIR, taskId, "events.jsonl");
+}
 
-/**
- * Append an event entry. This is the ONLY write operation.
- * Existing entries are NEVER modified or deleted (append-only invariant).
- */
-export function append(entry: EventEntry): void {
-  const existing = store.get(entry.taskId);
-  if (existing) {
-    existing.push(entry);
-  } else {
-    store.set(entry.taskId, [entry]);
+export function append(
+  taskId: TaskId,
+  event: WorkflowEvent,
+  actor: string,
+  data: Record<string, unknown> = {}
+): EventEntry {
+  const entry: EventEntry = {
+    eventId: randomUUID(),
+    taskId,
+    timestamp: new Date().toISOString(),
+    event,
+    actor,
+    data,
+  };
+
+  const filePath = getEventsPath(taskId);
+  const dir = dirname(filePath);
+  if (!existsSync(dir)) {
+    mkdirSync(dir, { recursive: true });
   }
+
+  appendFileSync(filePath, JSON.stringify(entry) + "\n", "utf-8");
+  return entry;
 }
 
-/**
- * Read all events for a task in append order.
- * Returns a frozen copy — callers cannot mutate the log.
- */
 export function readAppendOrder(taskId: TaskId): readonly EventEntry[] {
-  const entries = store.get(taskId);
-  if (!entries) return [];
-  return Object.freeze([...entries]);
+  const filePath = getEventsPath(taskId);
+  if (!existsSync(filePath)) {
+    return [];
+  }
+
+  const raw = readFileSync(filePath, "utf-8");
+  return raw
+    .split("\n")
+    .filter((line) => line.trim().length > 0)
+    .map((line) => JSON.parse(line) as EventEntry);
 }
 
-/**
- * Get total event count for a task.
- */
 export function count(taskId: TaskId): number {
-  return store.get(taskId)?.length ?? 0;
-}
-
-/**
- * Reset store (for testing only — not exposed in production API).
- * @internal
- */
-export function _resetForTesting(): void {
-  store.clear();
+  return readAppendOrder(taskId).length;
 }
