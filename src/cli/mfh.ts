@@ -1,26 +1,23 @@
 #!/usr/bin/env node
 
+import { executeTask, approveTask, retryTask, getStatus } from "../harness-core/harnessCore.js";
 import * as taskRegistry from "../task-registry/taskRegistry.js";
 import * as eventLog from "../event-log/eventLog.js";
-import * as metricsCollector from "../observation/metricsCollector.js";
-import * as harnessCore from "../harness-core/harnessCore.js";
+import * as metrics from "../observation/metricsCollector.js";
 import { fakeClaudeAdapter } from "../adapters/fakeClaudeAdapter.js";
 import type { WorkflowState } from "../types/harness-types.js";
 
 const args = process.argv.slice(2);
 
-function parseFlags(tokens: string[]): Record<string, string> {
-  const flags: Record<string, string> = {};
-  for (let i = 0; i < tokens.length; i++) {
-    if (tokens[i].startsWith("--") && i + 1 < tokens.length && !tokens[i + 1].startsWith("--")) {
-      flags[tokens[i].slice(2)] = tokens[i + 1];
-      i++;
-    }
+function getArg(args: string[], flag: string): string | undefined {
+  const idx = args.indexOf(flag);
+  if (idx !== -1 && idx + 1 < args.length) {
+    return args[idx + 1];
   }
-  return flags;
+  return undefined;
 }
 
-function printHelp(): void {
+function printUsage(): void {
   console.log(`mfh — Mindflow Harness CLI
 
 Commands:
@@ -39,26 +36,27 @@ async function main(): Promise<void> {
   const [command, subcommand, ...rest] = args;
 
   if (!command || command === "help") {
-    printHelp();
+    printUsage();
     return;
   }
 
   if (command !== "task") {
     console.error(`Unknown command: ${command}`);
-    printHelp();
+    printUsage();
     process.exit(1);
   }
 
   switch (subcommand) {
     case "add": {
-      const flags = parseFlags(rest);
-      if (!flags.desc || !flags.scope) {
+      const desc = getArg(rest, "--desc");
+      const scope = getArg(rest, "--scope");
+      if (!desc || !scope) {
         console.error('Usage: task add --desc "..." --scope "..."');
         process.exit(1);
       }
       const taskId = taskRegistry.add({
-        description: flags.desc,
-        scope: flags.scope,
+        description: desc,
+        scope,
         createdAt: new Date().toISOString(),
       });
       console.log(taskId);
@@ -66,9 +64,9 @@ async function main(): Promise<void> {
     }
 
     case "list": {
-      const flags = parseFlags(rest);
-      const records = flags.state
-        ? taskRegistry.list({ state: flags.state as WorkflowState })
+      const state = getArg(rest, "--state");
+      const records = state
+        ? taskRegistry.list({ state: state as WorkflowState })
         : taskRegistry.list();
 
       if (records.length === 0) {
@@ -77,9 +75,7 @@ async function main(): Promise<void> {
       }
 
       const col = (s: string, w: number) => s.padEnd(w);
-      console.log(
-        col("TASK_ID", 38) + col("STATE", 22) + col("RETRIES", 9) + "CREATED_AT",
-      );
+      console.log(col("TASK_ID", 38) + col("STATE", 22) + col("RETRIES", 9) + "CREATED_AT");
       console.log("-".repeat(100));
       for (const r of records) {
         console.log(
@@ -98,7 +94,7 @@ async function main(): Promise<void> {
         console.error("Usage: task status <taskId>");
         process.exit(1);
       }
-      const status = harnessCore.getStatus(taskId);
+      const status = getStatus(taskId);
       console.log(JSON.stringify(status, null, 2));
       break;
     }
@@ -127,7 +123,7 @@ async function main(): Promise<void> {
         console.error(`Task not found: ${taskId}`);
         process.exit(1);
       }
-      const result = await harnessCore.executeTask(
+      const result = await executeTask(
         {
           id: taskId,
           description: record.definition.description,
@@ -146,8 +142,9 @@ async function main(): Promise<void> {
         console.error("Usage: task approve <taskId>");
         process.exit(1);
       }
-      harnessCore.approveTask(taskId);
-      console.log(`Task ${taskId} approved.`);
+      approveTask(taskId);
+      const status = getStatus(taskId);
+      console.log(status.state);
       break;
     }
 
@@ -157,8 +154,9 @@ async function main(): Promise<void> {
         console.error("Usage: task retry <taskId>");
         process.exit(1);
       }
-      harnessCore.retryTask(taskId);
-      console.log(`Task ${taskId} retry approved.`);
+      retryTask(taskId);
+      const status = getStatus(taskId);
+      console.log(status.state);
       break;
     }
 
@@ -168,14 +166,14 @@ async function main(): Promise<void> {
         console.error("Usage: task metrics <taskId>");
         process.exit(1);
       }
-      const metrics = metricsCollector.getMetrics(taskId);
-      console.log(JSON.stringify(metrics, null, 2));
+      const report = metrics.getMetrics(taskId);
+      console.log(JSON.stringify(report, null, 2));
       break;
     }
 
     default: {
       console.error(`Unknown subcommand: ${subcommand}`);
-      printHelp();
+      printUsage();
       process.exit(1);
     }
   }

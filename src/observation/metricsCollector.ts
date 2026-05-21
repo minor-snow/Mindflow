@@ -1,38 +1,65 @@
 import type { MetricsReport, TaskId } from "../types/harness-types.js";
-import { writeFileSync, mkdirSync } from "node:fs";
+import { writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
-const DATA_DIR = process.env.MFH_DATA_DIR || join(process.cwd(), "tasks");
-const counters = new Map<TaskId, { invalid: number; bypass: number; rewrite: number; misroute: number }>();
-
-function ensure(taskId: TaskId) {
-  if (!counters.has(taskId)) counters.set(taskId, { invalid: 0, bypass: 0, rewrite: 0, misroute: 0 });
-  return counters.get(taskId)!;
+interface Counters {
+  invalid_transition_count: number;
+  policy_bypass_attempt_count: number;
+  event_log_rewrite_count: number;
+  transient_error_misroute_count: number;
 }
 
-export function recordInvalidTransition(taskId: TaskId): void { ensure(taskId).invalid++; }
-export function recordPolicyBypassAttempt(taskId: TaskId): void { ensure(taskId).bypass++; }
-export function recordEventRewriteAttempt(taskId: TaskId): void { ensure(taskId).rewrite++; }
-export function recordTransientMisroute(taskId: TaskId): void { ensure(taskId).misroute++; }
+const store = new Map<TaskId, Counters>();
+
+function getOrCreate(taskId: TaskId): Counters {
+  if (!store.has(taskId)) {
+    store.set(taskId, {
+      invalid_transition_count: 0,
+      policy_bypass_attempt_count: 0,
+      event_log_rewrite_count: 0,
+      transient_error_misroute_count: 0,
+    });
+  }
+  return store.get(taskId)!;
+}
+
+export function recordInvalidTransition(taskId: TaskId): void {
+  getOrCreate(taskId).invalid_transition_count++;
+}
+
+export function recordPolicyBypassAttempt(taskId: TaskId): void {
+  getOrCreate(taskId).policy_bypass_attempt_count++;
+}
+
+export function recordEventRewriteAttempt(taskId: TaskId): void {
+  getOrCreate(taskId).event_log_rewrite_count++;
+}
+
+export function recordTransientMisroute(taskId: TaskId): void {
+  getOrCreate(taskId).transient_error_misroute_count++;
+}
 
 export function getMetrics(taskId: TaskId): MetricsReport {
-  const c = ensure(taskId);
+  const c = getOrCreate(taskId);
   return {
     taskId,
     evaluatedAt: new Date().toISOString(),
-    invalid_transition_count: c.invalid,
-    policy_bypass_attempt_count: c.bypass,
-    event_log_rewrite_count: c.rewrite,
-    transient_error_misroute_count: c.misroute,
+    invalid_transition_count: c.invalid_transition_count,
+    policy_bypass_attempt_count: c.policy_bypass_attempt_count,
+    event_log_rewrite_count: c.event_log_rewrite_count,
+    transient_error_misroute_count: c.transient_error_misroute_count,
     forbidden_dependency_count: 0,
     expected_output_completion_ratio: 1.0,
   };
 }
 
 export function writeMetrics(taskId: TaskId): void {
-  const dir = join(DATA_DIR, taskId, "reports");
-  mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, "metrics.json"), JSON.stringify(getMetrics(taskId), null, 2) + "\n");
+  const report = getMetrics(taskId);
+  const dir = join("tasks", taskId, "reports");
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, "metrics.json"), JSON.stringify(report, null, 2));
 }
 
-export function resetMetrics(taskId: TaskId): void { counters.delete(taskId); }
+export function resetMetrics(taskId: TaskId): void {
+  store.delete(taskId);
+}
