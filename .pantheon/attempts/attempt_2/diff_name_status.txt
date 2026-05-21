@@ -1,0 +1,12 @@
+added	.pantheon/attempts/attempt_1/check.json
+added	.pantheon/attempts/attempt_1/diff_name_status.txt
+added	.pantheon/attempts/attempt_1/feedback.md
+added	.pantheon/attempts/attempt_1/report.md
+modified	.pantheon/check.json
+added	.pantheon/feedback.md
+added	.pantheon/internal/agent_feedback.json
+added	.pantheon/internal/diff_verification.json
+added	.pantheon/report.md
+added	src/harness-core/harnessCore.test.ts
+added	src/policy-gate/policyGate.test.ts
+added	src/state-machine/stateMachine.test.ts

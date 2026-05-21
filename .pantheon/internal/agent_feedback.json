@@ -1,22 +1,98 @@
 {
   "schema_version": "agent_feedback.v1",
-  "feedback_id": "5aa649aa-964a-4b84-b5b5-90c905383d72",
-  "generated_at": "2026-05-21T13:11:15.468Z",
+  "feedback_id": "896a9055-88df-4652-a3ab-fd1bfb45a576",
+  "generated_at": "2026-05-21T13:42:39.690Z",
   "source": {
     "phase": "diff_verification",
     "source_id": "da62cc1e-26ee-406c-a613-4380dbf318ae"
   },
   "verdict": "requires_reverse_issue",
   "summary": {
-    "violation_count": 6,
+    "violation_count": 12,
     "blocking_count": 0,
     "review_required_count": 0,
-    "reverse_issue_required_count": 6,
-    "requires_human_count": 6
+    "reverse_issue_required_count": 12,
+    "requires_human_count": 12
   },
   "violations": [
     {
       "violation_id": "v-0",
+      "kind": "forbidden_file_modified",
+      "severity": "reverse_issue_required",
+      "location": {
+        "file_path": ".pantheon/attempts/attempt_1/check.json"
+      },
+      "constraint": {
+        "constraint_id": "scope.forbidden_patterns",
+        "constraint_kind": "path",
+        "description": "File matches a forbidden pattern."
+      },
+      "message": "Forbidden file modified: .pantheon/attempts/attempt_1/check.json",
+      "fix_hint": "Revert this file. Do not modify protocol or forbidden files.",
+      "allowed_agent_actions": [
+        "revert_file"
+      ],
+      "requires_human": true
+    },
+    {
+      "violation_id": "v-1",
+      "kind": "forbidden_file_modified",
+      "severity": "reverse_issue_required",
+      "location": {
+        "file_path": ".pantheon/attempts/attempt_1/diff_name_status.txt"
+      },
+      "constraint": {
+        "constraint_id": "scope.forbidden_patterns",
+        "constraint_kind": "path",
+        "description": "File matches a forbidden pattern."
+      },
+      "message": "Forbidden file modified: .pantheon/attempts/attempt_1/diff_name_status.txt",
+      "fix_hint": "Revert this file. Do not modify protocol or forbidden files.",
+      "allowed_agent_actions": [
+        "revert_file"
+      ],
+      "requires_human": true
+    },
+    {
+      "violation_id": "v-2",
+      "kind": "forbidden_file_modified",
+      "severity": "reverse_issue_required",
+      "location": {
+        "file_path": ".pantheon/attempts/attempt_1/feedback.md"
+      },
+      "constraint": {
+        "constraint_id": "scope.forbidden_patterns",
+        "constraint_kind": "path",
+        "description": "File matches a forbidden pattern."
+      },
+      "message": "Forbidden file modified: .pantheon/attempts/attempt_1/feedback.md",
+      "fix_hint": "Revert this file. Do not modify protocol or forbidden files.",
+      "allowed_agent_actions": [
+        "revert_file"
+      ],
+      "requires_human": true
+    },
+    {
+      "violation_id": "v-3",
+      "kind": "forbidden_file_modified",
+      "severity": "reverse_issue_required",
+      "location": {
+        "file_path": ".pantheon/attempts/attempt_1/report.md"
+      },
+      "constraint": {
+        "constraint_id": "scope.forbidden_patterns",
+        "constraint_kind": "path",
+        "description": "File matches a forbidden pattern."
+      },
+      "message": "Forbidden file modified: .pantheon/attempts/attempt_1/report.md",
+      "fix_hint": "Revert this file. Do not modify protocol or forbidden files.",
+      "allowed_agent_actions": [
+        "revert_file"
+      ],
+      "requires_human": true
+    },
+    {
+      "violation_id": "v-4",
       "kind": "forbidden_file_modified",
       "severity": "reverse_issue_required",
       "location": {
@@ -35,97 +111,138 @@
       "requires_human": true
     },
     {
-      "violation_id": "v-1",
-      "kind": "forbidden_file_modified",
-      "severity": "reverse_issue_required",
-      "location": {
-        "file_path": ".pantheon/internal/agent_scope.json"
-      },
-      "constraint": {
-        "constraint_id": "scope.forbidden_patterns",
-        "constraint_kind": "path",
-        "description": "File matches a forbidden pattern."
-      },
-      "message": "Forbidden file modified: .pantheon/internal/agent_scope.json",
-      "fix_hint": "Revert this file. Do not modify protocol or forbidden files.",
-      "allowed_agent_actions": [
-        "revert_file"
-      ],
-      "requires_human": true
-    },
-    {
-      "violation_id": "v-2",
-      "kind": "forbidden_file_modified",
-      "severity": "reverse_issue_required",
-      "location": {
-        "file_path": ".pantheon/internal/change_contract_lite.json"
-      },
-      "constraint": {
-        "constraint_id": "scope.forbidden_patterns",
-        "constraint_kind": "path",
-        "description": "File matches a forbidden pattern."
-      },
-      "message": "Forbidden file modified: .pantheon/internal/change_contract_lite.json",
-      "fix_hint": "Revert this file. Do not modify protocol or forbidden files.",
-      "allowed_agent_actions": [
-        "revert_file"
-      ],
-      "requires_human": true
-    },
-    {
-      "violation_id": "v-3",
-      "kind": "forbidden_file_modified",
-      "severity": "reverse_issue_required",
-      "location": {
-        "file_path": ".pantheon/internal/observations.json"
-      },
-      "constraint": {
-        "constraint_id": "scope.forbidden_patterns",
-        "constraint_kind": "path",
-        "description": "File matches a forbidden pattern."
-      },
-      "message": "Forbidden file modified: .pantheon/internal/observations.json",
-      "fix_hint": "Revert this file. Do not modify protocol or forbidden files.",
-      "allowed_agent_actions": [
-        "revert_file"
-      ],
-      "requires_human": true
-    },
-    {
-      "violation_id": "v-4",
-      "kind": "forbidden_file_modified",
-      "severity": "reverse_issue_required",
-      "location": {
-        "file_path": ".pantheon/scope.md"
-      },
-      "constraint": {
-        "constraint_id": "scope.forbidden_patterns",
-        "constraint_kind": "path",
-        "description": "File matches a forbidden pattern."
-      },
-      "message": "Forbidden file modified: .pantheon/scope.md",
-      "fix_hint": "Revert this file. Do not modify protocol or forbidden files.",
-      "allowed_agent_actions": [
-        "revert_file"
-      ],
-      "requires_human": true
-    },
-    {
       "violation_id": "v-5",
       "kind": "forbidden_file_modified",
       "severity": "reverse_issue_required",
       "location": {
-        "file_path": ".pantheon/task.md"
+        "file_path": ".pantheon/feedback.md"
       },
       "constraint": {
         "constraint_id": "scope.forbidden_patterns",
         "constraint_kind": "path",
         "description": "File matches a forbidden pattern."
       },
-      "message": "Forbidden file modified: .pantheon/task.md",
+      "message": "Forbidden file modified: .pantheon/feedback.md",
       "fix_hint": "Revert this file. Do not modify protocol or forbidden files.",
       "allowed_agent_actions": [
         "revert_file"
+      ],
+      "requires_human": true
+    },
+    {
+      "violation_id": "v-6",
+      "kind": "forbidden_file_modified",
+      "severity": "reverse_issue_required",
+      "location": {
+        "file_path": ".pantheon/internal/agent_feedback.json"
+      },
+      "constraint": {
+        "constraint_id": "scope.forbidden_patterns",
+        "constraint_kind": "path",
+        "description": "File matches a forbidden pattern."
+      },
+      "message": "Forbidden file modified: .pantheon/internal/agent_feedback.json",
+      "fix_hint": "Revert this file. Do not modify protocol or forbidden files.",
+      "allowed_agent_actions": [
+        "revert_file"
+      ],
+      "requires_human": true
+    },
+    {
+      "violation_id": "v-7",
+      "kind": "forbidden_file_modified",
+      "severity": "reverse_issue_required",
+      "location": {
+        "file_path": ".pantheon/internal/diff_verification.json"
+      },
+      "constraint": {
+        "constraint_id": "scope.forbidden_patterns",
+        "constraint_kind": "path",
+        "description": "File matches a forbidden pattern."
+      },
+      "message": "Forbidden file modified: .pantheon/internal/diff_verification.json",
+      "fix_hint": "Revert this file. Do not modify protocol or forbidden files.",
+      "allowed_agent_actions": [
+        "revert_file"
+      ],
+      "requires_human": true
+    },
+    {
+      "violation_id": "v-8",
+      "kind": "forbidden_file_modified",
+      "severity": "reverse_issue_required",
+      "location": {
+        "file_path": ".pantheon/report.md"
+      },
+      "constraint": {
+        "constraint_id": "scope.forbidden_patterns",
+        "constraint_kind": "path",
+        "description": "File matches a forbidden pattern."
+      },
+      "message": "Forbidden file modified: .pantheon/report.md",
+      "fix_hint": "Revert this file. Do not modify protocol or forbidden files.",
+      "allowed_agent_actions": [
+        "revert_file"
+      ],
+      "requires_human": true
+    },
+    {
+      "violation_id": "v-9",
+      "kind": "outside_scope_file",
+      "severity": "reverse_issue_required",
+      "location": {
+        "file_path": "src/harness-core/harnessCore.test.ts"
+      },
+      "constraint": {
+        "constraint_id": "scope.allowed_files",
+        "constraint_kind": "scope",
+        "description": "File is not in the authorized scope."
+      },
+      "message": "File outside authorized scope: src/harness-core/harnessCore.test.ts",
+      "fix_hint": "Revert this file or request a Reverse Issue to expand the authorized scope.",
+      "allowed_agent_actions": [
+        "revert_file",
+        "request_reverse_issue"
+      ],
+      "requires_human": true
+    },
+    {
+      "violation_id": "v-10",
+      "kind": "outside_scope_file",
+      "severity": "reverse_issue_required",
+      "location": {
+        "file_path": "src/policy-gate/policyGate.test.ts"
+      },
+      "constraint": {
+        "constraint_id": "scope.allowed_files",
+        "constraint_kind": "scope",
+        "description": "File is not in the authorized scope."
+      },
+      "message": "File outside authorized scope: src/policy-gate/policyGate.test.ts",
+      "fix_hint": "Revert this file or request a Reverse Issue to expand the authorized scope.",
+      "allowed_agent_actions": [
+        "revert_file",
+        "request_reverse_issue"
+      ],
+      "requires_human": true
+    },
+    {
+      "violation_id": "v-11",
+      "kind": "outside_scope_file",
+      "severity": "reverse_issue_required",
+      "location": {
+        "file_path": "src/state-machine/stateMachine.test.ts"
+      },
+      "constraint": {
+        "constraint_id": "scope.allowed_files",
+        "constraint_kind": "scope",
+        "description": "File is not in the authorized scope."
+      },
+      "message": "File outside authorized scope: src/state-machine/stateMachine.test.ts",
+      "fix_hint": "Revert this file or request a Reverse Issue to expand the authorized scope.",
+      "allowed_agent_actions": [
+        "revert_file",
+        "request_reverse_issue"
       ],
       "requires_human": true
     }
@@ -135,7 +252,7 @@
       "action_id": "r-0",
       "action": "revert_file",
       "target": {
-        "file_path": ".pantheon/check.json"
+        "file_path": ".pantheon/attempts/attempt_1/check.json"
       },
       "reason": "Revert forbidden file.",
       "priority": "high",
@@ -145,7 +262,7 @@
       "action_id": "r-1",
       "action": "revert_file",
       "target": {
-        "file_path": ".pantheon/internal/agent_scope.json"
+        "file_path": ".pantheon/attempts/attempt_1/diff_name_status.txt"
       },
       "reason": "Revert forbidden file.",
       "priority": "high",
@@ -155,7 +272,7 @@
       "action_id": "r-2",
       "action": "revert_file",
       "target": {
-        "file_path": ".pantheon/internal/change_contract_lite.json"
+        "file_path": ".pantheon/attempts/attempt_1/feedback.md"
       },
       "reason": "Revert forbidden file.",
       "priority": "high",
@@ -165,7 +282,7 @@
       "action_id": "r-3",
       "action": "revert_file",
       "target": {
-        "file_path": ".pantheon/internal/observations.json"
+        "file_path": ".pantheon/attempts/attempt_1/report.md"
       },
       "reason": "Revert forbidden file.",
       "priority": "high",
@@ -175,7 +292,7 @@
       "action_id": "r-4",
       "action": "revert_file",
       "target": {
-        "file_path": ".pantheon/scope.md"
+        "file_path": ".pantheon/check.json"
       },
       "reason": "Revert forbidden file.",
       "priority": "high",
@@ -185,9 +302,69 @@
       "action_id": "r-5",
       "action": "revert_file",
       "target": {
-        "file_path": ".pantheon/task.md"
+        "file_path": ".pantheon/feedback.md"
       },
       "reason": "Revert forbidden file.",
+      "priority": "high",
+      "requires_human": true
+    },
+    {
+      "action_id": "r-6",
+      "action": "revert_file",
+      "target": {
+        "file_path": ".pantheon/internal/agent_feedback.json"
+      },
+      "reason": "Revert forbidden file.",
+      "priority": "high",
+      "requires_human": true
+    },
+    {
+      "action_id": "r-7",
+      "action": "revert_file",
+      "target": {
+        "file_path": ".pantheon/internal/diff_verification.json"
+      },
+      "reason": "Revert forbidden file.",
+      "priority": "high",
+      "requires_human": true
+    },
+    {
+      "action_id": "r-8",
+      "action": "revert_file",
+      "target": {
+        "file_path": ".pantheon/report.md"
+      },
+      "reason": "Revert forbidden file.",
+      "priority": "high",
+      "requires_human": true
+    },
+    {
+      "action_id": "r-9",
+      "action": "remove_out_of_scope_change",
+      "target": {
+        "file_path": "src/harness-core/harnessCore.test.ts"
+      },
+      "reason": "Remove out-of-scope change or request reverse issue.",
+      "priority": "high",
+      "requires_human": true
+    },
+    {
+      "action_id": "r-10",
+      "action": "remove_out_of_scope_change",
+      "target": {
+        "file_path": "src/policy-gate/policyGate.test.ts"
+      },
+      "reason": "Remove out-of-scope change or request reverse issue.",
+      "priority": "high",
+      "requires_human": true
+    },
+    {
+      "action_id": "r-11",
+      "action": "remove_out_of_scope_change",
+      "target": {
+        "file_path": "src/state-machine/stateMachine.test.ts"
+      },
+      "reason": "Remove out-of-scope change or request reverse issue.",
       "priority": "high",
       "requires_human": true
     }

@@ -1,21 +1,56 @@
 {
   "schema_version": "diff_verification_result.v1",
-  "verified_at": "2026-05-21T13:11:15.466Z",
+  "verified_at": "2026-05-21T13:42:39.687Z",
   "source_scope_id": "scope-lite-585fb6b8e184",
   "source_contract_id": "da62cc1e-26ee-406c-a613-4380dbf318ae",
   "verdict": "requires_reverse_issue",
   "reasons": [
+    "`.pantheon/attempts/attempt_1/check.json` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/attempts/attempt_1/diff_name_status.txt` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/attempts/attempt_1/feedback.md` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/attempts/attempt_1/report.md` matches forbidden pattern `.pantheon/**`.",
     "`.pantheon/check.json` matches forbidden pattern `.pantheon/**`.",
-    "`.pantheon/internal/agent_scope.json` matches forbidden pattern `.pantheon/**`.",
-    "`.pantheon/internal/change_contract_lite.json` matches forbidden pattern `.pantheon/**`.",
-    "`.pantheon/internal/observations.json` matches forbidden pattern `.pantheon/**`.",
-    "`.pantheon/scope.md` matches forbidden pattern `.pantheon/**`.",
-    "`.pantheon/task.md` matches forbidden pattern `.pantheon/**`."
+    "`.pantheon/feedback.md` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/internal/agent_feedback.json` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/internal/diff_verification.json` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/report.md` matches forbidden pattern `.pantheon/**`.",
+    "`src/harness-core/harnessCore.test.ts` is outside the authorized scope.",
+    "`src/policy-gate/policyGate.test.ts` is outside the authorized scope.",
+    "`src/state-machine/stateMachine.test.ts` is outside the authorized scope."
   ],
   "required_actions": [
+    "Create a Pantheon reverse issue to expand scope, or revert out-of-scope changes.",
     "Revert changes to forbidden files. They are managed by Pantheon."
   ],
   "file_statuses": [
+    {
+      "path": ".pantheon/attempts/attempt_1/check.json",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
+    {
+      "path": ".pantheon/attempts/attempt_1/diff_name_status.txt",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
+    {
+      "path": ".pantheon/attempts/attempt_1/feedback.md",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
+    {
+      "path": ".pantheon/attempts/attempt_1/report.md",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
     {
       "path": ".pantheon/check.json",
       "status": "forbidden",
@@ -24,38 +59,52 @@
       ]
     },
     {
-      "path": ".pantheon/internal/agent_scope.json",
+      "path": ".pantheon/feedback.md",
       "status": "forbidden",
       "reasons": [
         "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
       ]
     },
     {
-      "path": ".pantheon/internal/change_contract_lite.json",
+      "path": ".pantheon/internal/agent_feedback.json",
       "status": "forbidden",
       "reasons": [
         "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
       ]
     },
     {
-      "path": ".pantheon/internal/observations.json",
+      "path": ".pantheon/internal/diff_verification.json",
       "status": "forbidden",
       "reasons": [
         "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
       ]
     },
     {
-      "path": ".pantheon/scope.md",
+      "path": ".pantheon/report.md",
       "status": "forbidden",
       "reasons": [
         "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
       ]
     },
     {
-      "path": ".pantheon/task.md",
-      "status": "forbidden",
+      "path": "src/harness-core/harnessCore.test.ts",
+      "status": "outside_scope",
       "reasons": [
-        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+        "File is not in the authorized scope."
+      ]
+    },
+    {
+      "path": "src/policy-gate/policyGate.test.ts",
+      "status": "outside_scope",
+      "reasons": [
+        "File is not in the authorized scope."
+      ]
+    },
+    {
+      "path": "src/state-machine/stateMachine.test.ts",
+      "status": "outside_scope",
+      "reasons": [
+        "File is not in the authorized scope."
       ]
     }
   ]
