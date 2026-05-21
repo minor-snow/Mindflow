@@ -1,4 +1,4 @@
-import type { AgentResult, CompiledPrompt } from "../../types/index.js";
+import type { AgentResult, CompiledPrompt } from "../../types/harness-types.js";
 
 export async function run(prompt: CompiledPrompt): Promise<AgentResult> {
   await new Promise((resolve) => setTimeout(resolve, 50));

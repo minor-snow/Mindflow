@@ -1,4 +1,4 @@
-import { TaskId, AgentResult, RetryClassification, CompiledPrompt } from "../types/index.js";
+import { TaskId, AgentResult, RetryClassification, CompiledPrompt } from "../types/harness-types.js";
 
 const MAX_RETRIES = 3;
 

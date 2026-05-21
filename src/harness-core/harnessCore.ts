@@ -6,12 +6,12 @@ import type {
   AgentResult,
   EventEntry,
   StatusReport,
-} from "../types/index.js";
-import { add, load, updateState } from "../task-registry/index.js";
-import { append, readAppendOrder } from "../event-log/index.js";
-import { transition, deriveState } from "../state-machine/index.js";
-import { authorize } from "../policy-gate/index.js";
-import { classify, shouldRetry, continuePrompt } from "../retry-manager/index.js";
+} from "../types/harness-types.js";
+import { add, load, updateState } from "../task-registry/taskRegistry.js";
+import { append, readAppendOrder } from "../event-log/eventLog.js";
+import { transition, deriveState } from "../state-machine/stateMachine.js";
+import { authorize } from "../policy-gate/policyGate.js";
+import { classify, shouldRetry, continuePrompt } from "../retry-manager/retryManager.js";
 
 const MAX_ATTEMPTS = 3;
 

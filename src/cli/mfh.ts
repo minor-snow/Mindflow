@@ -1,6 +1,6 @@
-import { executeTask, getStatus } from "../harness-core/index.js";
-import type { TaskDefinition } from "../types/index.js";
-import * as fakeClaudeAdapter from "../adapters/fake-claude/index.js";
+import { executeTask, getStatus } from "../harness-core/harnessCore.js";
+import type { TaskDefinition } from "../types/harness-types.js";
+import * as fakeClaudeAdapter from "../adapters/fake-claude/fakeClaudeAdapter.js";
 
 export type ExitCode = 0 | 1;
 

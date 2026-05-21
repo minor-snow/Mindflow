@@ -1,7 +1,7 @@
 // TaskRegistry: CRUD for task records
 // Stores tasks in-memory; file persistence (tasks/{taskId}/state.json) in next iteration.
 
-import type { TaskId, TaskDefinition, TaskRecord, WorkflowState } from "../types/index.js";
+import type { TaskId, TaskDefinition, TaskRecord, WorkflowState } from "../types/harness-types.js";
 
 const registry = new Map<TaskId, TaskRecord>();
 

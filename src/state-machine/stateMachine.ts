@@ -1,5 +1,5 @@
-import type { TaskId, WorkflowState, WorkflowEvent } from "../types/index.js";
-import * as eventLog from "../event-log/index.js";
+import type { TaskId, WorkflowState, WorkflowEvent } from "../types/harness-types.js";
+import * as eventLog from "../event-log/eventLog.js";
 
 const TRANSITIONS: ReadonlyMap<WorkflowState, ReadonlyMap<WorkflowEvent, WorkflowState>> = new Map([
   ["NEW", new Map<WorkflowEvent, WorkflowState>([

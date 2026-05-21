@@ -1,7 +1,7 @@
 // EventLog: append-only, no mutations allowed (RB-001)
 // All events are stored in-memory for now; file persistence in next iteration.
 
-import type { TaskId, EventEntry } from "../types/index.js";
+import type { TaskId, EventEntry } from "../types/harness-types.js";
 
 const store = new Map<TaskId, EventEntry[]>();
 

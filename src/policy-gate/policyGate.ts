@@ -1,4 +1,4 @@
-import { ProposedAction, PolicyDecision } from "../types/index.js";
+import { ProposedAction, PolicyDecision } from "../types/harness-types.js";
 
 const DANGEROUS_ACTIONS = new Set([
   "delete_task",
