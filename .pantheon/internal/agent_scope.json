@@ -1,0 +1,197 @@
+{
+  "schema_version": "agent_scope_lite.v1",
+  "scope_id": "scope-lite-585fb6b8e184",
+  "source_contract_id": "da62cc1e-26ee-406c-a613-4380dbf318ae",
+  "source_observations_hash": "sha256:181b4fc2c95089737311ff312fa3cbd76560eb43e0eab945f27a48dcf4931710",
+  "intent": "Implement slice-001-core-orchestrator",
+  "allowed_files": [
+    "src/adapters/fake-claude/fakeClaudeAdapter.ts",
+    "src/adapters/fake-codex/fakeCodexAdapter.ts",
+    "src/cli/mfh.ts",
+    "src/event-log/eventLog.ts",
+    "src/harness-core/harnessCore.ts",
+    "src/policy-gate/policyGate.ts",
+    "src/retry-manager/retryManager.ts",
+    "src/state-machine/stateMachine.ts",
+    "src/task-registry/taskRegistry.ts",
+    "src/types/harness-types.ts"
+  ],
+  "review_required_files": [
+    {
+      "path": "src/adapters/fake-claude/fakeClaudeAdapter.ts",
+      "reasons": [
+        "No test mapping found by path convention; manual verification recommended."
+      ]
+    },
+    {
+      "path": "src/adapters/fake-codex/fakeCodexAdapter.ts",
+      "reasons": [
+        "No test mapping found by path convention; manual verification recommended."
+      ]
+    },
+    {
+      "path": "src/cli/mfh.ts",
+      "reasons": [
+        "No test mapping found by path convention; manual verification recommended."
+      ]
+    },
+    {
+      "path": "src/event-log/eventLog.ts",
+      "reasons": [
+        "No test mapping found by path convention; manual verification recommended."
+      ]
+    },
+    {
+      "path": "src/harness-core/harnessCore.ts",
+      "reasons": [
+        "No test mapping found by path convention; manual verification recommended."
+      ]
+    },
+    {
+      "path": "src/policy-gate/policyGate.ts",
+      "reasons": [
+        "No test mapping found by path convention; manual verification recommended."
+      ]
+    },
+    {
+      "path": "src/retry-manager/retryManager.ts",
+      "reasons": [
+        "No test mapping found by path convention; manual verification recommended."
+      ]
+    },
+    {
+      "path": "src/state-machine/stateMachine.ts",
+      "reasons": [
+        "No test mapping found by path convention; manual verification recommended."
+      ]
+    },
+    {
+      "path": "src/task-registry/taskRegistry.ts",
+      "reasons": [
+        "No test mapping found by path convention; manual verification recommended."
+      ]
+    },
+    {
+      "path": "src/types/harness-types.ts",
+      "reasons": [
+        "No test mapping found by path convention; manual verification recommended."
+      ]
+    }
+  ],
+  "forbidden_patterns": [
+    {
+      "pattern": ".pantheon/**",
+      "reason": "Pantheon protocol artifacts — do not modify."
+    },
+    {
+      "pattern": ".cursor/**",
+      "reason": "Cursor adapter artifacts — managed by Pantheon."
+    },
+    {
+      "pattern": ".git/**",
+      "reason": "Excluded by scanner: excluded_dir"
+    },
+    {
+      "pattern": "node_modules/**",
+      "reason": "Excluded by scanner: excluded_dir"
+    }
+  ],
+  "required_tests": [],
+  "instructions": [
+    "Verify test coverage for: src/adapters/fake-claude/fakeClaudeAdapter.ts",
+    "Verify test coverage for: src/adapters/fake-codex/fakeCodexAdapter.ts",
+    "Verify test coverage for: src/cli/mfh.ts",
+    "Verify test coverage for: src/event-log/eventLog.ts",
+    "Verify test coverage for: src/harness-core/harnessCore.ts",
+    "Verify test coverage for: src/policy-gate/policyGate.ts",
+    "Verify test coverage for: src/retry-manager/retryManager.ts",
+    "Verify test coverage for: src/state-machine/stateMachine.ts",
+    "Verify test coverage for: src/task-registry/taskRegistry.ts",
+    "Verify test coverage for: src/types/harness-types.ts",
+    "Add test_mapping_overrides in pantheon.json for 10 unmapped source file(s).",
+    "Add path_roles in pantheon.json for 1 file(s) in the 'unknown' bucket.",
+    "1 file(s) use unsupported languages. Add language support only if they are in governance scope."
+  ],
+  "violation_hints": [
+    {
+      "path": "src/adapters/fake-claude/fakeClaudeAdapter.ts",
+      "violation_kind": "missing_test_mapping",
+      "context": {
+        "expected": "Source changes should have related tests",
+        "actual": "No test mapping found"
+      }
+    },
+    {
+      "path": "src/adapters/fake-codex/fakeCodexAdapter.ts",
+      "violation_kind": "missing_test_mapping",
+      "context": {
+        "expected": "Source changes should have related tests",
+        "actual": "No test mapping found"
+      }
+    },
+    {
+      "path": "src/cli/mfh.ts",
+      "violation_kind": "missing_test_mapping",
+      "context": {
+        "expected": "Source changes should have related tests",
+        "actual": "No test mapping found"
+      }
+    },
+    {
+      "path": "src/event-log/eventLog.ts",
+      "violation_kind": "missing_test_mapping",
+      "context": {
+        "expected": "Source changes should have related tests",
+        "actual": "No test mapping found"
+      }
+    },
+    {
+      "path": "src/harness-core/harnessCore.ts",
+      "violation_kind": "missing_test_mapping",
+      "context": {
+        "expected": "Source changes should have related tests",
+        "actual": "No test mapping found"
+      }
+    },
+    {
+      "path": "src/policy-gate/policyGate.ts",
+      "violation_kind": "missing_test_mapping",
+      "context": {
+        "expected": "Source changes should have related tests",
+        "actual": "No test mapping found"
+      }
+    },
+    {
+      "path": "src/retry-manager/retryManager.ts",
+      "violation_kind": "missing_test_mapping",
+      "context": {
+        "expected": "Source changes should have related tests",
+        "actual": "No test mapping found"
+      }
+    },
+    {
+      "path": "src/state-machine/stateMachine.ts",
+      "violation_kind": "missing_test_mapping",
+      "context": {
+        "expected": "Source changes should have related tests",
+        "actual": "No test mapping found"
+      }
+    },
+    {
+      "path": "src/task-registry/taskRegistry.ts",
+      "violation_kind": "missing_test_mapping",
+      "context": {
+        "expected": "Source changes should have related tests",
+        "actual": "No test mapping found"
+      }
+    },
+    {
+      "path": "src/types/harness-types.ts",
+      "violation_kind": "missing_test_mapping",
+      "context": {
+        "expected": "Source changes should have related tests",
+        "actual": "No test mapping found"
+      }
+    }
+  ]
+}

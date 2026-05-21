@@ -1,0 +1,147 @@
+{
+  "schema_version": "change_contract_lite.v1",
+  "contract_id": "da62cc1e-26ee-406c-a613-4380dbf318ae",
+  "mode": "bootstrap",
+  "created_at": "2026-05-21T13:11:14.704Z",
+  "intent": "Implement slice-001-core-orchestrator",
+  "refs": {
+    "repo_observations_hash": "sha256:181b4fc2c95089737311ff312fa3cbd76560eb43e0eab945f27a48dcf4931710",
+    "head_commit_hash": "56058edf6587ef4f056a009d833eca085550ff39",
+    "repo_state": "git_clean",
+    "has_uncommitted_changes": false
+  },
+  "changed_files": [
+    "src/adapters/fake-claude/fakeClaudeAdapter.ts",
+    "src/adapters/fake-codex/fakeCodexAdapter.ts",
+    "src/cli/mfh.ts",
+    "src/event-log/eventLog.ts",
+    "src/harness-core/harnessCore.ts",
+    "src/policy-gate/policyGate.ts",
+    "src/retry-manager/retryManager.ts",
+    "src/state-machine/stateMachine.ts",
+    "src/task-registry/taskRegistry.ts",
+    "src/types/harness-types.ts"
+  ],
+  "observed_scope": {
+    "touched_buckets": [
+      "src"
+    ],
+    "touched_sensitive_paths": [],
+    "related_tests": [],
+    "owner_hints": [],
+    "unknowns": [],
+    "changed_file_statuses": [
+      {
+        "path": "src/adapters/fake-claude/fakeClaudeAdapter.ts",
+        "status": "observed",
+        "reason": "File found in observations"
+      },
+      {
+        "path": "src/adapters/fake-codex/fakeCodexAdapter.ts",
+        "status": "observed",
+        "reason": "File found in observations"
+      },
+      {
+        "path": "src/cli/mfh.ts",
+        "status": "observed",
+        "reason": "File found in observations"
+      },
+      {
+        "path": "src/event-log/eventLog.ts",
+        "status": "observed",
+        "reason": "File found in observations"
+      },
+      {
+        "path": "src/harness-core/harnessCore.ts",
+        "status": "observed",
+        "reason": "File found in observations"
+      },
+      {
+        "path": "src/policy-gate/policyGate.ts",
+        "status": "observed",
+        "reason": "File found in observations"
+      },
+      {
+        "path": "src/retry-manager/retryManager.ts",
+        "status": "observed",
+        "reason": "File found in observations"
+      },
+      {
+        "path": "src/state-machine/stateMachine.ts",
+        "status": "observed",
+        "reason": "File found in observations"
+      },
+      {
+        "path": "src/task-registry/taskRegistry.ts",
+        "status": "observed",
+        "reason": "File found in observations"
+      },
+      {
+        "path": "src/types/harness-types.ts",
+        "status": "observed",
+        "reason": "File found in observations"
+      }
+    ],
+    "sensitive_path_details": [],
+    "undeclared_package_details": [],
+    "unmapped_src_details": [
+      {
+        "path": "src/adapters/fake-claude/fakeClaudeAdapter.ts"
+      },
+      {
+        "path": "src/adapters/fake-codex/fakeCodexAdapter.ts"
+      },
+      {
+        "path": "src/cli/mfh.ts"
+      },
+      {
+        "path": "src/event-log/eventLog.ts"
+      },
+      {
+        "path": "src/harness-core/harnessCore.ts"
+      },
+      {
+        "path": "src/policy-gate/policyGate.ts"
+      },
+      {
+        "path": "src/retry-manager/retryManager.ts"
+      },
+      {
+        "path": "src/state-machine/stateMachine.ts"
+      },
+      {
+        "path": "src/task-registry/taskRegistry.ts"
+      },
+      {
+        "path": "src/types/harness-types.ts"
+      }
+    ]
+  },
+  "decision": {
+    "verdict": "requires_review",
+    "reasons": [
+      "No test mapping found by path convention for: src/adapters/fake-claude/fakeClaudeAdapter.ts; manual verification recommended",
+      "No test mapping found by path convention for: src/adapters/fake-codex/fakeCodexAdapter.ts; manual verification recommended",
+      "No test mapping found by path convention for: src/cli/mfh.ts; manual verification recommended",
+      "No test mapping found by path convention for: src/event-log/eventLog.ts; manual verification recommended",
+      "No test mapping found by path convention for: src/harness-core/harnessCore.ts; manual verification recommended",
+      "No test mapping found by path convention for: src/policy-gate/policyGate.ts; manual verification recommended",
+      "No test mapping found by path convention for: src/retry-manager/retryManager.ts; manual verification recommended",
+      "No test mapping found by path convention for: src/state-machine/stateMachine.ts; manual verification recommended",
+      "No test mapping found by path convention for: src/task-registry/taskRegistry.ts; manual verification recommended",
+      "No test mapping found by path convention for: src/types/harness-types.ts; manual verification recommended"
+    ],
+    "required_actions": [
+      "Verify test coverage for: src/adapters/fake-claude/fakeClaudeAdapter.ts",
+      "Verify test coverage for: src/adapters/fake-codex/fakeCodexAdapter.ts",
+      "Verify test coverage for: src/cli/mfh.ts",
+      "Verify test coverage for: src/event-log/eventLog.ts",
+      "Verify test coverage for: src/harness-core/harnessCore.ts",
+      "Verify test coverage for: src/policy-gate/policyGate.ts",
+      "Verify test coverage for: src/retry-manager/retryManager.ts",
+      "Verify test coverage for: src/state-machine/stateMachine.ts",
+      "Verify test coverage for: src/task-registry/taskRegistry.ts",
+      "Verify test coverage for: src/types/harness-types.ts"
+    ]
+  }
+}

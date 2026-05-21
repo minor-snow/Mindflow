@@ -1,0 +1,707 @@
+{
+  "schema_version": "repo_observations.v1",
+  "repo": {
+    "repo_root_label": "Mindflow",
+    "repo_state": "git_clean",
+    "head_commit_hash": "56058edf6587ef4f056a009d833eca085550ff39",
+    "has_uncommitted_changes": false,
+    "uncommitted_file_count": 0,
+    "scanned_at": "2026-05-21T13:11:14.680Z"
+  },
+  "scanner": {
+    "scanner_version": "0.2.0",
+    "mode": "deterministic",
+    "language_targets": [
+      "typescript",
+      "javascript"
+    ],
+    "llm_used": false
+  },
+  "limits": {
+    "max_file_bytes": 524288,
+    "max_total_files": 10000,
+    "max_import_edges": 50000,
+    "scan_timeout_ms": 60000,
+    "excluded_dirs": [
+      "node_modules",
+      "dist",
+      "build",
+      "coverage",
+      ".git",
+      ".next",
+      "out",
+      ".cache",
+      "tmp",
+      ".tmp-pet-build"
+    ]
+  },
+  "observations": {
+    "files": [
+      {
+        "path": ".gitignore",
+        "bucket": "unknown",
+        "language": "other",
+        "size_bytes": 45,
+        "analysis_status": "unsupported_language",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": ".gitignore",
+            "value": "bucket=unknown"
+          }
+        ]
+      },
+      {
+        "path": "README.md",
+        "bucket": "docs",
+        "language": "markdown",
+        "size_bytes": 92,
+        "analysis_status": "analyzed",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": "README.md",
+            "value": "bucket=docs"
+          }
+        ]
+      },
+      {
+        "path": "package-lock.json",
+        "bucket": "config",
+        "language": "json",
+        "size_bytes": 1443,
+        "analysis_status": "analyzed",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": "package-lock.json",
+            "value": "bucket=config"
+          }
+        ]
+      },
+      {
+        "path": "package.json",
+        "bucket": "config",
+        "language": "json",
+        "size_bytes": 337,
+        "analysis_status": "analyzed",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": "package.json",
+            "value": "bucket=config"
+          }
+        ]
+      },
+      {
+        "path": "src/adapters/fake-claude/fakeClaudeAdapter.ts",
+        "bucket": "src",
+        "language": "typescript",
+        "size_bytes": 585,
+        "analysis_status": "analyzed",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": "src/adapters/fake-claude/fakeClaudeAdapter.ts",
+            "value": "bucket=src"
+          }
+        ]
+      },
+      {
+        "path": "src/adapters/fake-codex/fakeCodexAdapter.ts",
+        "bucket": "src",
+        "language": "typescript",
+        "size_bytes": 449,
+        "analysis_status": "analyzed",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": "src/adapters/fake-codex/fakeCodexAdapter.ts",
+            "value": "bucket=src"
+          }
+        ]
+      },
+      {
+        "path": "src/cli/mfh.ts",
+        "bucket": "src",
+        "language": "typescript",
+        "size_bytes": 1251,
+        "analysis_status": "analyzed",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": "src/cli/mfh.ts",
+            "value": "bucket=src"
+          }
+        ]
+      },
+      {
+        "path": "src/event-log/eventLog.ts",
+        "bucket": "src",
+        "language": "typescript",
+        "size_bytes": 1174,
+        "analysis_status": "analyzed",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": "src/event-log/eventLog.ts",
+            "value": "bucket=src"
+          }
+        ]
+      },
+      {
+        "path": "src/harness-core/harnessCore.ts",
+        "bucket": "src",
+        "language": "typescript",
+        "size_bytes": 2718,
+        "analysis_status": "analyzed",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": "src/harness-core/harnessCore.ts",
+            "value": "bucket=src"
+          }
+        ]
+      },
+      {
+        "path": "src/policy-gate/policyGate.ts",
+        "bucket": "src",
+        "language": "typescript",
+        "size_bytes": 809,
+        "analysis_status": "analyzed",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": "src/policy-gate/policyGate.ts",
+            "value": "bucket=src"
+          }
+        ]
+      },
+      {
+        "path": "src/retry-manager/retryManager.ts",
+        "bucket": "src",
+        "language": "typescript",
+        "size_bytes": 949,
+        "analysis_status": "analyzed",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": "src/retry-manager/retryManager.ts",
+            "value": "bucket=src"
+          }
+        ]
+      },
+      {
+        "path": "src/state-machine/stateMachine.ts",
+        "bucket": "src",
+        "language": "typescript",
+        "size_bytes": 2269,
+        "analysis_status": "analyzed",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": "src/state-machine/stateMachine.ts",
+            "value": "bucket=src"
+          }
+        ]
+      },
+      {
+        "path": "src/task-registry/taskRegistry.ts",
+        "bucket": "src",
+        "language": "typescript",
+        "size_bytes": 1719,
+        "analysis_status": "analyzed",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": "src/task-registry/taskRegistry.ts",
+            "value": "bucket=src"
+          }
+        ]
+      },
+      {
+        "path": "src/types/harness-types.ts",
+        "bucket": "src",
+        "language": "typescript",
+        "size_bytes": 1842,
+        "analysis_status": "analyzed",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": "src/types/harness-types.ts",
+            "value": "bucket=src"
+          }
+        ]
+      },
+      {
+        "path": "tsconfig.json",
+        "bucket": "config",
+        "language": "json",
+        "size_bytes": 329,
+        "analysis_status": "analyzed",
+        "evidence": [
+          {
+            "type": "path",
+            "source_path": "tsconfig.json",
+            "value": "bucket=config"
+          }
+        ]
+      }
+    ],
+    "path_buckets": [
+      {
+        "bucket": "unknown",
+        "paths": [
+          ".gitignore"
+        ],
+        "count": 1
+      },
+      {
+        "bucket": "docs",
+        "paths": [
+          "README.md"
+        ],
+        "count": 1
+      },
+      {
+        "bucket": "config",
+        "paths": [
+          "package-lock.json",
+          "package.json",
+          "tsconfig.json"
+        ],
+        "count": 3
+      },
+      {
+        "bucket": "src",
+        "paths": [
+          "src/adapters/fake-claude/fakeClaudeAdapter.ts",
+          "src/adapters/fake-codex/fakeCodexAdapter.ts",
+          "src/cli/mfh.ts",
+          "src/event-log/eventLog.ts",
+          "src/harness-core/harnessCore.ts",
+          "src/policy-gate/policyGate.ts",
+          "src/retry-manager/retryManager.ts",
+          "src/state-machine/stateMachine.ts",
+          "src/task-registry/taskRegistry.ts",
+          "src/types/harness-types.ts"
+        ],
+        "count": 10
+      }
+    ],
+    "import_edges": [
+      {
+        "from_file": "src/adapters/fake-claude/fakeClaudeAdapter.ts",
+        "raw_specifier": "../../types/harness-types.js",
+        "import_kind": "static",
+        "target_hint": "../../types/harness-types.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/adapters/fake-claude/fakeClaudeAdapter.ts",
+            "value": "../../types/harness-types.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/adapters/fake-codex/fakeCodexAdapter.ts",
+        "raw_specifier": "../../types/harness-types.js",
+        "import_kind": "static",
+        "target_hint": "../../types/harness-types.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/adapters/fake-codex/fakeCodexAdapter.ts",
+            "value": "../../types/harness-types.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/cli/mfh.ts",
+        "raw_specifier": "../harness-core/harnessCore.js",
+        "import_kind": "static",
+        "target_hint": "../harness-core/harnessCore.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/cli/mfh.ts",
+            "value": "../harness-core/harnessCore.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/cli/mfh.ts",
+        "raw_specifier": "../types/harness-types.js",
+        "import_kind": "static",
+        "target_hint": "../types/harness-types.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/cli/mfh.ts",
+            "value": "../types/harness-types.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/cli/mfh.ts",
+        "raw_specifier": "../adapters/fake-claude/fakeClaudeAdapter.js",
+        "import_kind": "static",
+        "target_hint": "../adapters/fake-claude/fakeClaudeAdapter.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/cli/mfh.ts",
+            "value": "../adapters/fake-claude/fakeClaudeAdapter.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/event-log/eventLog.ts",
+        "raw_specifier": "../types/harness-types.js",
+        "import_kind": "static",
+        "target_hint": "../types/harness-types.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/event-log/eventLog.ts",
+            "value": "../types/harness-types.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/harness-core/harnessCore.ts",
+        "raw_specifier": "../types/harness-types.js",
+        "import_kind": "static",
+        "target_hint": "../types/harness-types.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/harness-core/harnessCore.ts",
+            "value": "../types/harness-types.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/harness-core/harnessCore.ts",
+        "raw_specifier": "../task-registry/taskRegistry.js",
+        "import_kind": "static",
+        "target_hint": "../task-registry/taskRegistry.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/harness-core/harnessCore.ts",
+            "value": "../task-registry/taskRegistry.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/harness-core/harnessCore.ts",
+        "raw_specifier": "../event-log/eventLog.js",
+        "import_kind": "static",
+        "target_hint": "../event-log/eventLog.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/harness-core/harnessCore.ts",
+            "value": "../event-log/eventLog.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/harness-core/harnessCore.ts",
+        "raw_specifier": "../state-machine/stateMachine.js",
+        "import_kind": "static",
+        "target_hint": "../state-machine/stateMachine.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/harness-core/harnessCore.ts",
+            "value": "../state-machine/stateMachine.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/harness-core/harnessCore.ts",
+        "raw_specifier": "../policy-gate/policyGate.js",
+        "import_kind": "static",
+        "target_hint": "../policy-gate/policyGate.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/harness-core/harnessCore.ts",
+            "value": "../policy-gate/policyGate.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/harness-core/harnessCore.ts",
+        "raw_specifier": "../retry-manager/retryManager.js",
+        "import_kind": "static",
+        "target_hint": "../retry-manager/retryManager.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/harness-core/harnessCore.ts",
+            "value": "../retry-manager/retryManager.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/policy-gate/policyGate.ts",
+        "raw_specifier": "../types/harness-types.js",
+        "import_kind": "static",
+        "target_hint": "../types/harness-types.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/policy-gate/policyGate.ts",
+            "value": "../types/harness-types.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/retry-manager/retryManager.ts",
+        "raw_specifier": "../types/harness-types.js",
+        "import_kind": "static",
+        "target_hint": "../types/harness-types.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/retry-manager/retryManager.ts",
+            "value": "../types/harness-types.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/state-machine/stateMachine.ts",
+        "raw_specifier": "../types/harness-types.js",
+        "import_kind": "static",
+        "target_hint": "../types/harness-types.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/state-machine/stateMachine.ts",
+            "value": "../types/harness-types.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/state-machine/stateMachine.ts",
+        "raw_specifier": "../event-log/eventLog.js",
+        "import_kind": "static",
+        "target_hint": "../event-log/eventLog.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/state-machine/stateMachine.ts",
+            "value": "../event-log/eventLog.js"
+          }
+        ]
+      },
+      {
+        "from_file": "src/task-registry/taskRegistry.ts",
+        "raw_specifier": "../types/harness-types.js",
+        "import_kind": "static",
+        "target_hint": "../types/harness-types.js",
+        "resolution_status": "resolved_relative",
+        "evidence": [
+          {
+            "type": "import_literal",
+            "source_path": "src/task-registry/taskRegistry.ts",
+            "value": "../types/harness-types.js"
+          }
+        ]
+      }
+    ],
+    "test_mappings": [],
+    "sensitive_paths": [],
+    "owner_hints": [],
+    "config_hints": [
+      {
+        "config_path": "package.json",
+        "kind": "package_json",
+        "detected_fields": [
+          {
+            "field_name": "name",
+            "field_value_preview": "mindflow-harness"
+          },
+          {
+            "field_name": "type",
+            "field_value_preview": "module"
+          },
+          {
+            "field_name": "main",
+            "field_value_preview": "dist/cli/mfh.js"
+          }
+        ],
+        "evidence": [
+          {
+            "type": "config",
+            "source_path": "package.json",
+            "value": "config file: package_json"
+          }
+        ]
+      },
+      {
+        "config_path": "tsconfig.json",
+        "kind": "tsconfig",
+        "detected_fields": [
+          {
+            "field_name": "compilerOptions.target",
+            "field_value_preview": "ES2022"
+          },
+          {
+            "field_name": "compilerOptions.module",
+            "field_value_preview": "NodeNext"
+          },
+          {
+            "field_name": "compilerOptions.strict",
+            "field_value_preview": "true"
+          }
+        ],
+        "evidence": [
+          {
+            "type": "config",
+            "source_path": "tsconfig.json",
+            "value": "config file: tsconfig"
+          }
+        ]
+      }
+    ],
+    "package_manifests": [
+      {
+        "package_json_path": "package.json",
+        "package_name": "mindflow-harness",
+        "dependencies": [],
+        "dev_dependencies": [
+          "typescript",
+          "@types/node"
+        ],
+        "peer_dependencies": [],
+        "optional_dependencies": [],
+        "evidence": [
+          {
+            "type": "config",
+            "source_path": "package.json",
+            "value": "root package manifest"
+          }
+        ]
+      }
+    ]
+  },
+  "unknowns": {
+    "skipped_large_files": [],
+    "unsupported_files": [
+      ".gitignore"
+    ],
+    "dynamic_imports": [],
+    "unresolved_imports": [],
+    "unmapped_sources": [
+      "src/adapters/fake-claude/fakeClaudeAdapter.ts",
+      "src/adapters/fake-codex/fakeCodexAdapter.ts",
+      "src/cli/mfh.ts",
+      "src/event-log/eventLog.ts",
+      "src/harness-core/harnessCore.ts",
+      "src/policy-gate/policyGate.ts",
+      "src/retry-manager/retryManager.ts",
+      "src/state-machine/stateMachine.ts",
+      "src/task-registry/taskRegistry.ts",
+      "src/types/harness-types.ts"
+    ],
+    "unmapped_tests": [],
+    "ambiguous_test_mappings": [],
+    "scan_limit_exceeded": [],
+    "owner_patterns_unresolved": [],
+    "changed_files_not_observed": []
+  },
+  "excluded": [
+    {
+      "path": ".git",
+      "reason": "excluded_dir",
+      "evidence": [
+        {
+          "type": "path",
+          "source_path": ".git",
+          "value": "excluded dir: .git"
+        }
+      ]
+    },
+    {
+      "path": "node_modules",
+      "reason": "excluded_dir",
+      "evidence": [
+        {
+          "type": "path",
+          "source_path": "node_modules",
+          "value": "excluded dir: node_modules"
+        }
+      ]
+    }
+  ],
+  "quality": {
+    "raw_unknown_count": 11,
+    "raw_unknown_ratio": 0.7333333333333333,
+    "out_of_scope_count": 1,
+    "out_of_scope_ratio": 0.06666666666666667,
+    "actionable_count": 10,
+    "actionable_ratio": 0.6666666666666666,
+    "intrinsic_count": 0,
+    "intrinsic_ratio": 0,
+    "unknown_bucket_file_count": 1,
+    "undeclared_package_count": 0,
+    "taxonomy": {
+      "out_of_scope": {
+        "unsupported_files": [
+          ".gitignore"
+        ]
+      },
+      "actionable": {
+        "unmapped_sources": [
+          "src/adapters/fake-claude/fakeClaudeAdapter.ts",
+          "src/adapters/fake-codex/fakeCodexAdapter.ts",
+          "src/cli/mfh.ts",
+          "src/event-log/eventLog.ts",
+          "src/harness-core/harnessCore.ts",
+          "src/policy-gate/policyGate.ts",
+          "src/retry-manager/retryManager.ts",
+          "src/state-machine/stateMachine.ts",
+          "src/task-registry/taskRegistry.ts",
+          "src/types/harness-types.ts"
+        ],
+        "unmapped_tests": [],
+        "undeclared_packages": [],
+        "unresolved_aliases": [],
+        "unknown_packages": [],
+        "owner_patterns_unresolved": []
+      },
+      "intrinsic": {
+        "dynamic_imports": [],
+        "skipped_large_files": [],
+        "scan_limit_exceeded": []
+      }
+    }
+  },
+  "meta": {
+    "observation_hash": "sha256:181b4fc2c95089737311ff312fa3cbd76560eb43e0eab945f27a48dcf4931710",
+    "partial_scan": false,
+    "file_count": 15,
+    "unknown_count": 11,
+    "excluded_count": 2
+  }
+}
