@@ -1,0 +1,12 @@
+You are implementing the EventLog module for Mindflow Delivery Harness slice-001.
+
+Working directory: /home/centi/Mindflow
+Branch: k3/slice-001
+
+Create the file src/event-log/index.ts with:
+1. Export type EventEntry = { taskId: string; timestamp: string; event: string; data: unknown; }
+2. Export function append(entry: EventEntry): void - appends to an in-memory array (no file I/O needed for now)
+3. Export function readAppendOrder(taskId: string): readonly EventEntry[] - returns entries for a task in append order
+4. Add a comment at the top: "// EventLog: append-only, no mutations allowed"
+
+Keep it minimal. Only create src/event-log/index.ts. Do not modify any other files.
