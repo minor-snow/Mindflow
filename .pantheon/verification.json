@@ -1,0 +1,70 @@
+{
+  "schema_version": "diff_verification_result.v1",
+  "verified_at": "2026-05-22T04:48:33.345Z",
+  "source_scope_id": "scope-lite_98250616f7b07a8d",
+  "source_contract_id": "ccl_35dced43e23acaf7",
+  "verdict": "requires_reverse_issue",
+  "reasons": [
+    "`.pantheon/check.json` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/internal/agent_scope.json` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/internal/change_contract_lite.json` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/internal/observations.json` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/scope.md` matches forbidden pattern `.pantheon/**`.",
+    "`.pantheon/task.md` matches forbidden pattern `.pantheon/**`.",
+    "`src/harness-core/harnessCore.ts` requires review."
+  ],
+  "required_actions": [
+    "Revert changes to forbidden files. They are managed by Pantheon."
+  ],
+  "file_statuses": [
+    {
+      "path": ".pantheon/check.json",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
+    {
+      "path": ".pantheon/internal/agent_scope.json",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
+    {
+      "path": ".pantheon/internal/change_contract_lite.json",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
+    {
+      "path": ".pantheon/internal/observations.json",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
+    {
+      "path": ".pantheon/scope.md",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
+    {
+      "path": ".pantheon/task.md",
+      "status": "forbidden",
+      "reasons": [
+        "Matches forbidden pattern: .pantheon/** — Pantheon protocol artifacts — do not modify."
+      ]
+    },
+    {
+      "path": "src/harness-core/harnessCore.ts",
+      "status": "review_required",
+      "reasons": [
+        "No test mapping found by path convention; manual verification recommended."
+      ]
+    }
+  ]
+}

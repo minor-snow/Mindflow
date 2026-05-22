@@ -1,0 +1,22 @@
+{
+  "schema_version": "pantheon_config@0.1.0",
+  "version": 1,
+  "protected": [
+    ".pantheon/**",
+    ".git/**",
+    "node_modules/**",
+    "dist/**",
+    "tasks/**"
+  ],
+  "review_required": [
+    "docs/**"
+  ],
+  "generated": [
+    "dist/**"
+  ],
+  "path_roles": {
+    "src/**": "src",
+    "test/**": "test",
+    "docs/**": "docs"
+  }
+}

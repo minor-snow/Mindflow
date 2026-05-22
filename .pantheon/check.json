@@ -1,139 +1,15 @@
 {
   "schema_version": "pantheon_check.v1",
-  "verdict": "requires_reverse_issue",
-  "intent": "Implement slice-001-core-orchestrator",
+  "verdict": "guard_created",
+  "intent": "Mindflow Delivery Harness slice-001 development",
   "summary": {
-    "changed_files": 12,
-    "in_scope": 0,
-    "review_required": 0,
-    "outside_scope": 3,
-    "forbidden": 9
+    "changed_files": 25,
+    "in_scope": 12,
+    "review_required": 13,
+    "outside_scope": 0,
+    "forbidden": 0
   },
-  "findings": [
-    {
-      "kind": "forbidden_file_modified",
-      "severity": "reverse_issue_required",
-      "file": ".pantheon/attempts/attempt_1/check.json",
-      "message": "Forbidden file modified: .pantheon/attempts/attempt_1/check.json",
-      "allowed_actions": [
-        "revert_file"
-      ],
-      "requires_human": true
-    },
-    {
-      "kind": "forbidden_file_modified",
-      "severity": "reverse_issue_required",
-      "file": ".pantheon/attempts/attempt_1/diff_name_status.txt",
-      "message": "Forbidden file modified: .pantheon/attempts/attempt_1/diff_name_status.txt",
-      "allowed_actions": [
-        "revert_file"
-      ],
-      "requires_human": true
-    },
-    {
-      "kind": "forbidden_file_modified",
-      "severity": "reverse_issue_required",
-      "file": ".pantheon/attempts/attempt_1/feedback.md",
-      "message": "Forbidden file modified: .pantheon/attempts/attempt_1/feedback.md",
-      "allowed_actions": [
-        "revert_file"
-      ],
-      "requires_human": true
-    },
-    {
-      "kind": "forbidden_file_modified",
-      "severity": "reverse_issue_required",
-      "file": ".pantheon/attempts/attempt_1/report.md",
-      "message": "Forbidden file modified: .pantheon/attempts/attempt_1/report.md",
-      "allowed_actions": [
-        "revert_file"
-      ],
-      "requires_human": true
-    },
-    {
-      "kind": "forbidden_file_modified",
-      "severity": "reverse_issue_required",
-      "file": ".pantheon/check.json",
-      "message": "Forbidden file modified: .pantheon/check.json",
-      "allowed_actions": [
-        "revert_file"
-      ],
-      "requires_human": true
-    },
-    {
-      "kind": "forbidden_file_modified",
-      "severity": "reverse_issue_required",
-      "file": ".pantheon/feedback.md",
-      "message": "Forbidden file modified: .pantheon/feedback.md",
-      "allowed_actions": [
-        "revert_file"
-      ],
-      "requires_human": true
-    },
-    {
-      "kind": "forbidden_file_modified",
-      "severity": "reverse_issue_required",
-      "file": ".pantheon/internal/agent_feedback.json",
-      "message": "Forbidden file modified: .pantheon/internal/agent_feedback.json",
-      "allowed_actions": [
-        "revert_file"
-      ],
-      "requires_human": true
-    },
-    {
-      "kind": "forbidden_file_modified",
-      "severity": "reverse_issue_required",
-      "file": ".pantheon/internal/diff_verification.json",
-      "message": "Forbidden file modified: .pantheon/internal/diff_verification.json",
-      "allowed_actions": [
-        "revert_file"
-      ],
-      "requires_human": true
-    },
-    {
-      "kind": "forbidden_file_modified",
-      "severity": "reverse_issue_required",
-      "file": ".pantheon/report.md",
-      "message": "Forbidden file modified: .pantheon/report.md",
-      "allowed_actions": [
-        "revert_file"
-      ],
-      "requires_human": true
-    },
-    {
-      "kind": "outside_scope_file",
-      "severity": "reverse_issue_required",
-      "file": "src/harness-core/harnessCore.test.ts",
-      "message": "File outside authorized scope: src/harness-core/harnessCore.test.ts",
-      "allowed_actions": [
-        "revert_file",
-        "request_reverse_issue"
-      ],
-      "requires_human": true
-    },
-    {
-      "kind": "outside_scope_file",
-      "severity": "reverse_issue_required",
-      "file": "src/policy-gate/policyGate.test.ts",
-      "message": "File outside authorized scope: src/policy-gate/policyGate.test.ts",
-      "allowed_actions": [
-        "revert_file",
-        "request_reverse_issue"
-      ],
-      "requires_human": true
-    },
-    {
-      "kind": "outside_scope_file",
-      "severity": "reverse_issue_required",
-      "file": "src/state-machine/stateMachine.test.ts",
-      "message": "File outside authorized scope: src/state-machine/stateMachine.test.ts",
-      "allowed_actions": [
-        "revert_file",
-        "request_reverse_issue"
-      ],
-      "requires_human": true
-    }
-  ],
+  "findings": [],
   "artifacts": {
     "task": ".pantheon/task.md",
     "scope": ".pantheon/scope.md",
@@ -142,24 +18,7 @@
   },
   "repo": {
     "label": "Mindflow",
-    "head_commit": "56058edf6587ef4f056a009d833eca085550ff39",
-    "state": "checked"
-  },
-  "attempt": 2,
-  "history": [
-    {
-      "attempt": 1,
-      "verdict": "requires_reverse_issue",
-      "violation_count": 6,
-      "artifact_dir": ".pantheon/attempts/attempt_1",
-      "timestamp": "2026-05-21T13:42:39.692Z"
-    },
-    {
-      "attempt": 2,
-      "verdict": "requires_reverse_issue",
-      "violation_count": 12,
-      "artifact_dir": ".pantheon/attempts/attempt_2",
-      "timestamp": "2026-05-21T13:42:39.692Z"
-    }
-  ]
+    "head_commit": "8029d2703bb63359b9b31dba9aa408fdd4ce9ed1",
+    "state": "git_dirty"
+  }
 }

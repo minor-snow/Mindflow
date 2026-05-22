@@ -1,6 +1,12 @@
 node_modules/
 dist/
+tasks/
 .clarion-cache/
 *.js.map
-tasks/
-dist/
+
+# Pantheon runtime artifacts (not committed)
+.pantheon/attempts/
+.pantheon/feedback.md
+.pantheon/report.md
+.pantheon/internal/agent_feedback.json
+.pantheon/internal/diff_verification.json
